@@ -25,6 +25,7 @@ This repository is an open-source project actively participating in the **Drips 
 | Layer | Technology |
 |---|---|
 | Core Logic | TypeScript, `@stellar/stellar-sdk` |
+| Smart Contracts | Rust, Soroban SDK |
 | Monorepo Tooling | `pnpm` Workspaces, TurboRepo |
 | Component Documentation | Storybook |
 | Bundling Engine | `tsup` / Vite |
@@ -47,6 +48,9 @@ stellar-blocks/
 │   ├── core/               # Non-UI hooks, State Machines, & SDK wrappers
 │   ├── react/              # React-specific UI Components & Context Providers
 │   └── tailwind-config/    # Shared design tokens & plugin utilities
+├── contracts/              # Soroban smart contracts (Rust)
+│   ├── example/            # Example starter contract
+│   └── [contract-name]/    # Additional contracts for specific use cases
 ├── CONTRIBUTING.md         # Onboarding docs for Wave contributors
 ├── package.json
 └── pnpm-workspace.yaml
@@ -120,6 +124,28 @@ pnpm install
 # Start the local Storybook dev environment to preview components
 pnpm --filter docs dev
 ```
+
+### Smart Contract Development Setup
+
+To work with Soroban smart contracts:
+
+```bash
+# Navigate to contracts directory
+cd contracts
+
+# Run the setup script to install Rust, Soroban CLI, and configure testnet
+chmod +x setup.sh
+./setup.sh
+
+# Build the example contract
+cd example
+cargo build --target wasm32-unknown-unknown --release
+
+# Run tests
+cargo test
+```
+
+See `contracts/README.md` for detailed smart contract development instructions.
 
 ---
 
